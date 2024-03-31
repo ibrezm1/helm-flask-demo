@@ -1,6 +1,15 @@
 # Use an official Python runtime as the base image
 FROM python:3.8-slim
 
+# Set a build-time argument (public variable)
+ARG PUBLIC_VARIABLE=default_public_value
+
+# Set an environment variable during the build process
+ENV PUBLIC_VARIABLE=${PUBLIC_VARIABLE}
+
+# Set a secret environment variable during the run process
+ENV SECRET_VARIABLE=default_secret_value
+
 # Set the working directory in the container
 WORKDIR /app
 
