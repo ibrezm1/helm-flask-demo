@@ -22,4 +22,12 @@ spec:
         name: flask-demo-app
         imagePullPolicy: IfNotPresent
         resources: {}
+        env:
+        - name: PUBLIC_VARIABLE
+          value: "public_value"
+        - name: SECRET_VARIABLE
+          valueFrom:
+            secretKeyRef:
+              name: my-secret
+              key: flask-secret
 status: {}
