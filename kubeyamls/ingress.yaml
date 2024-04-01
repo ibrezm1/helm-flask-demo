@@ -4,13 +4,13 @@ metadata:
   name: flask-demo-app-ingress
 spec:
   rules:
-  - host: yourdomain.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: flask-demo-app
-            port:
-              number: 80
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flask-demo-app-service
+                port:
+                  number: 80

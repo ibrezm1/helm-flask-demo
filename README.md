@@ -59,6 +59,10 @@ For a detailed walkthrough on how this project was developed, refer to my [blog 
    ```bash
    docker build --build-arg PUBLIC_VARIABLE=<value> -t flask-demo-app:1.0.0 .
    docker run -d -p 5000:5000 -e SECRET_VARIABLE=<value> --name flask-demo-container flask-demo-app:1.0.0
+   curl http://localhost:5000/env_variables
+   docker stop flask-demo-container
+   docker rm flask-demo-container    //do not remove if we plan to use it
+
    ```
 2. **Secret deployment**:
    ```bash
@@ -68,12 +72,18 @@ For a detailed walkthrough on how this project was developed, refer to my [blog 
 3. **Kube Deployment**:
    ```bash
    minikube start
-   kubectl apply -f deployment.yaml -f secret.yaml -f service.yaml -f ingress.yaml
+   kubectl apply -f deployment.yaml -f secret.yaml -f service.yaml
+   minikube service flask-demo-app-service --url
+   minikube service --all
+   kubectl get ingress
+   kubectl get svc
    kubectl get all
    kubectl logs <pod-name>
    kubectl scale deployment flask-demo-app --replicas=3
    kubectl delete -f deployment.yaml -f secret.yaml -f service.yaml -f ingress.yaml
+   minikube stop
    ```
+   Ingress.yaml kept for demo
 
 2. **Deploying on Kubernetes with Helm**:
    Refer to the Helm chart in the `flask-demo-app-chart` directory and the associated documentation for deployment instructions.
@@ -90,6 +100,8 @@ For a detailed walkthrough on how this project was developed, refer to my [blog 
 7. [Flask Kubernetes Helm](https://github.com/mrasap/flask-kubernetes-helm)
 8. [Deploying Flask Apps with Kubernetes, Docker, Helm: A Comprehensive Guide](https://medium.com/@kishorchukka/deploying-flask-apps-with-kubernetes-docker-helm-a-comprehensive-guide-1719d4a055be)
 9. [Flask Demo App GitHub Repository](https://github.com/kishorechk/flask-demo-app/blob/main/app.py)
+10.  [Local image pull from Kubernetes](https://stackoverflow.com/questions/40144138/pull-a-local-image-to-run-a-pod-in-kubernetes)
+11. [Concepts of Networking for Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
 
 Originally picked up from [Flask Demo App README](https://github.com/kishorechk/flask-demo-app/blob/main/README.md)
 

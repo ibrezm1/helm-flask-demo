@@ -4,7 +4,7 @@ from flask import Flask
 app = Flask(__name__)
 
 # Define a route that uses environment variables
-@app.route('/env_variables')
+@app.route('/env')
 def env_variables():
     # Get the public environment variable
     public_variable = os.environ.get('PUBLIC_VARIABLE', 'Public variable not set')
