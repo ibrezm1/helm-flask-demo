@@ -60,6 +60,20 @@ For a detailed walkthrough on how this project was developed, refer to my [blog 
    docker build --build-arg PUBLIC_VARIABLE=<value> -t flask-demo-app:1.0.0 .
    docker run -d -p 5000:5000 -e SECRET_VARIABLE=<value> --name flask-demo-container flask-demo-app:1.0.0
    ```
+2. **Secret deployment**:
+   ```bash
+   echo "secret" | base64 
+   c2VjcmV0Cg==
+   ```
+3. **Kube Deployment**:
+   ```bash
+   minikube start
+   kubectl apply -f deployment.yaml -f secret.yaml -f service.yaml -f ingress.yaml
+   kubectl get all
+   kubectl logs <pod-name>
+   kubectl scale deployment flask-demo-app --replicas=3
+   kubectl delete -f deployment.yaml -f secret.yaml -f service.yaml -f ingress.yaml
+   ```
 
 2. **Deploying on Kubernetes with Helm**:
    Refer to the Helm chart in the `flask-demo-app-chart` directory and the associated documentation for deployment instructions.
